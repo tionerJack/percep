@@ -1,34 +1,33 @@
-# Neuron Dart Package
+# percep Dart Package
 
-[![pub package](https://img.shields.io/pub/v/neuron.svg)](https://pub.dev/packages/neuron)
+[![pub package](https://img.shields.io/pub/v/percep.svg)](https://pub.dev/packages/percep)
 
 A Dart package providing a simple implementation of a Neuron and Perceptron for neural network applications.
 
-## Neuron Class
+## Perceptron Class
 
-The `Neuron` class represents a basic neuron with adjustable weights for synapses. It includes a default activation function and the ability to train through the `synapse` method.
+The `Perceptron` class encapsulates a neuron and provides a simple training method using a dataset.
 
 ### Usage
 
 ```dart
-import 'package:neuron/neuron.dart';
+import 'package:perceptron/src/perceptron.dart';
 
 void main() {
-  // Create a neuron with 3 inputs
-  Neuron neuron = Neuron(3);
-
-  // Input values
-  List<double> input = [0.1, 0.2, 0.3];
-
-  // Get the output of the neuron
-  double output = neuron.getOutput(input);
-
-  // Train the neuron with a dataset
-  Map<List<double>, double> dataSet = {
-    [0.1, 0.2, 0.3]: 1.0,
-    [0.4, 0.5, 0.6]: 0.0,
+  final dataSet = {
+    [0.0, 0.0]: 0.0,
+    [0.0, 1.0]: 0.0,
+    [1.0, 0.0]: 0.0,
+    [1.0, 1.0]: 1.0,
   };
 
-  // Train for 10 steps
-  neuron.train(dataSet, steps: 10);
+  final perceptron = Perceptron();
+
+  perceptron.train(dataSet);
+
+  dataSet.entries.forEach((element) {
+    final y = perceptron.getOutput(element.key);
+    print("x=${element.key}  y=$y");
+  });
 }
+```
