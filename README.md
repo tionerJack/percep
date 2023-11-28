@@ -1,39 +1,34 @@
-<!-- 
-This README describes the package. If you publish this package to pub.dev,
-this README's contents appear on the landing page for your package.
+# Neuron Dart Package
 
-For information about how to write a good package README, see the guide for
-[writing package pages](https://dart.dev/guides/libraries/writing-package-pages). 
+[![pub package](https://img.shields.io/pub/v/neuron.svg)](https://pub.dev/packages/neuron)
 
-For general information about developing packages, see the Dart guide for
-[creating packages](https://dart.dev/guides/libraries/create-library-packages)
-and the Flutter guide for
-[developing packages and plugins](https://flutter.dev/developing-packages). 
--->
+A Dart package providing a simple implementation of a Neuron and Perceptron for neural network applications.
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+## Neuron Class
 
-## Features
+The `Neuron` class represents a basic neuron with adjustable weights for synapses. It includes a default activation function and the ability to train through the `synapse` method.
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
-## Usage
-
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder. 
+### Usage
 
 ```dart
-const like = 'sample';
-```
+import 'package:neuron/neuron.dart';
 
-## Additional information
+void main() {
+  // Create a neuron with 3 inputs
+  Neuron neuron = Neuron(3);
 
-TODO: Tell users more about the package: where to find more information, how to 
-contribute to the package, how to file issues, what response they can expect 
-from the package authors, and more.
+  // Input values
+  List<double> input = [0.1, 0.2, 0.3];
+
+  // Get the output of the neuron
+  double output = neuron.getOutput(input);
+
+  // Train the neuron with a dataset
+  Map<List<double>, double> dataSet = {
+    [0.1, 0.2, 0.3]: 1.0,
+    [0.4, 0.5, 0.6]: 0.0,
+  };
+
+  // Train for 10 steps
+  neuron.train(dataSet, steps: 10);
+}
